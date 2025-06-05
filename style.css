@@ -1,0 +1,298 @@
+/* Add your CSS here */
+
+/* Set the background color of the whole page to a sky blue gradient */
+body {
+  background: linear-gradient(to bottom left, skyblue, #1c5b85); /* Gradient from skyblue to a lighter blue */
+  font-family: 'Roboto', Arial, sans-serif; /* Set Roboto as the main font */
+}
+
+/* Make all images the same size */
+img {
+  width: 200px;   /* Set the width of all images */
+  height: 150px;  /* Set the height of all images */
+  object-fit: cover; /* This keeps the image from stretching */
+}
+
+/* Center the content inside the header section */
+header {
+  text-align: center;
+}
+
+/* Make the header logo show fully by setting its height and letting width adjust automatically */
+header img {
+  height: 120px;     /* Increased height for a larger logo */
+  width: auto;       /* Let the width adjust to keep the image from being squished */
+  object-fit: contain; /* Make sure the whole logo fits inside the area */
+}
+
+/* Style the hero image at the top of the header */
+/* Make the hero image fill the whole page */
+header img[alt="Hero Image"] {
+  width: 100%;         /* Make the image as wide as the viewport */
+  height: 85%;        /* Make the image as tall as the viewport */
+  display: block;       /* Remove extra space below the image */
+  margin: 0;            /* Remove default margin */
+  border-radius: 0;     /* No rounded corners */
+}
+
+/* Make the header container relative so we can position text inside */
+header > div {
+  position: relative;
+}
+
+/* Place the hero text on top of the hero image */
+.hero-text {
+  position: absolute;      /* Position it over the image */
+  top: 50%;                /* Move down 50% from the top */
+  left: 50%;               /* Move right 50% from the left */
+  transform: translate(-50%, -50%); /* Center it exactly */
+  width: 90%;              /* Make the text box not too wide */
+  max-width: 650px;        /* Keep the text box from getting too wide */
+  text-align: center;      /* Center the text */
+  pointer-events: none;    /* Let clicks go through to the image */
+}
+
+/* On small screens, make sure hero-text stays inside the hero image area */
+@media (max-width: 700px) {
+  .hero-text {
+    width: 95%;           /* Make the text box almost as wide as the image */
+    max-width: 95vw;      /* Prevent it from overflowing the viewport */
+    font-size: 1em;       /* Slightly smaller text for small screens */
+    margin-top: 85px;       /* Add a little padding */
+  }
+}
+
+/* Make the hero text white for better contrast */
+.hero-text p {
+  color: white;            /* Change font color to white */
+  font-size: 1.5em;        /* Make the text a bit bigger */
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Add shadow for readability */
+  margin: 0;
+}
+
+/* Set h1 font to Glegoo and make it bold */
+h1 {
+  font-family: 'Glegoo', serif;
+  font-weight: bold; /* Make the heading bold */
+}
+
+/* Set all paragraph text to use Nunito Sans font */
+p {
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+/* Make the cardsection stack vertically on small screens */
+cardsection {
+  display: block; /* Stack cards vertically by default */
+  text-align: center; /* Center the content inside each card */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Make the cardsection scroll horizontally on large screens */
+@media (min-width: 900px) {
+  cardsection {
+    display: flex;                /* Arrange cards in a row */
+    overflow-x: auto;             /* Allow horizontal scrolling */
+    gap: 20px;                    /* Space between cards */
+    padding: 20px 0;              /* Add some padding above and below */
+    padding-left: 2.5rem;  /* Increase padding on large screens */
+    padding-right: 2.5rem;
+    scroll-snap-type: x mandatory;/* Enable snap scrolling horizontally */
+    scroll-behavior: auto;        /* No smooth scroll, so scrolling is instant */
+    position: relative;           /* Needed for button positioning */
+  }
+  cardsection > div {
+    position: relative;           /* Needed for absolute positioning inside */
+    width: 25%;                   /* Make each card about 1/4 of the container width (with gap) */
+    min-width: 220px;             /* Minimum width for each card */
+    max-width: 350px;             /* Maximum width for each card */
+    flex: 0 0 22%;                /* Prevent cards from shrinking, keep them same size */
+    box-sizing: border-box;       /* Include padding and border in width */
+    background: rgba(255,255,255,0.7); /* Optional: make cards stand out */
+    border-radius: 10px;          /* Optional: rounded corners */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Optional: subtle shadow */
+    padding: 16px;                /* Optional: space inside cards */
+    text-align: center;
+  }
+
+  /* Hide the scrollbar for cardsection */
+  cardsection::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Style for scroll buttons */
+.scroll-btn {
+  display: none; /* Hide by default (including small screens) */
+}
+
+/* Only show scroll buttons on large screens */
+@media (min-width: 900px) {
+  .scroll-btn {
+    display: block; /* Show on large screens */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centers the button vertically relative to its position */
+    background: #1c5b85;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 1; /* Make button fully visible for instant response */
+    transition-delay: 0s;
+    
+  }
+  .scroll-btn:hover {
+    background: #328fd6;   /* Lighter blue on hover */
+    color: #fff;           /* Keep text white */
+    opacity: 0.9;          /* Slightly less transparent */
+    transform: translateY(-50%) scale(1.08); /* Slightly enlarge on hover */
+  }
+  .scroll-btn.left {
+    left: 10px;
+  }
+  .scroll-btn.right {
+    right: 10px;
+  }
+}
+
+/* Style the image and paragraph inside each card */
+cardsection > div img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Make the paragraph appear over the image on hover (large screens only) */
+@media (min-width: 900px) {
+  /* Hide the paragraph by default and position it over the image */
+  cardsection > div p {
+    display: flex;                    /* Use flex to center text */
+    align-items: center;              /* Center vertically */
+    justify-content: center;          /* Center horizontally */
+    opacity: 0;                       /* Hide the paragraph */
+    pointer-events: auto;             /* Allow mouse events (hover/click) */
+    position: absolute;               /* Position over the image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(28,91,133,0.85); /* Semi-transparent background for readability */
+    color: white;                     /* White text */
+    border-radius: 8px;               /* Match image corners */
+    font-size: 1.1em;
+    transition: opacity 0.3s;         /* Smooth fade in/out */
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.4); /* Add text shadow */
+    margin: 0;
+    z-index: 1;                       /* Make sure it appears above the image */
+  }
+  /* Show the paragraph when hovering over the card */
+  cardsection > div:hover p,
+  cardsection > div p:hover {
+    opacity: 1;                       /* Show the paragraph */
+  }
+}
+
+/* On small screens, show the paragraph below the image (no hover needed) */
+@media (max-width: 899px) {
+  cardsection > div p {
+    display: block !important;      /* Always show the paragraph */
+    position: static !important;    /* Normal flow, not over the image */
+    background: none !important;    /* Remove overlay background */
+    color: #01121d !important;      /* Use a readable color */
+    padding: 10px 0 !important;     /* Add some space */
+    border-radius: 0 !important;    /* No rounded corners */
+    font-size: 1em !important;      /* Normal font size */
+    opacity: 1 !important;          /* Fully visible */
+    text-shadow: none !important;   /* Remove text shadow */
+    margin-top: 10px !important;    /* Space above the paragraph */
+    display: block !important;      /* Make sure it's block */
+    align-items: normal !important; /* Remove flex alignment */
+    justify-content: normal !important;
+  }
+}
+
+/* Center the scroll-indicator text and add spacing */
+.scroll-indicator {
+  text-align: center;      /* Center the text */
+  margin: 20px 0 10px 0;   /* Add space above and below */
+}
+
+.scroll-indicator p {
+  display: inline-block;   /* Keep the text inline for better centering */
+  color: #000000;          /* Optional: match Intel blue for visibility */
+  font-size: 1.1em;        /* Slightly larger for readability */
+  margin: 0;
+}
+
+/* Footer styles */
+.site-footer {
+  background: #091b2c;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin-top: 48px;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+.site-footer .text-muted {
+  font-size: 1em;
+  color: #ffffff !important;
+  letter-spacing: 0.02em;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+/* Newsletter form styles */
+form[style*="max-width: 500px"] {
+  background: rgba(255,255,255,0.92);
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(28,91,133,0.10);
+  font-family: 'Glegoo', serif;
+}
+
+form[style*="max-width: 500px"] h2 {
+  font-family: 'Glegoo', serif;
+  font-weight: bold;
+  color: #1c5b85;
+  letter-spacing: 0.01em;
+}
+
+form[style*="max-width: 500px"] label {
+  font-family: 'Nunito Sans', Arial, sans-serif;
+  color: #1c5b85;
+  font-weight: 600;
+}
+
+form[style*="max-width: 500px"] .form-control {
+  border-radius: 8px;
+  border: 1px solid #b6d3e6;
+  background: #f4fafd;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+form[style*="max-width: 500px"] .form-control:focus {
+  border-color: #328fd6;
+  box-shadow: 0 0 0 0.15rem rgba(50,143,214,0.15);
+}
+
+form[style*="max-width: 500px"] .btn-primary {
+  background: #1c5b85;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Glegoo', serif;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  transition: background 0.2s;
+}
+
+form[style*="max-width: 500px"] .btn-primary:hover,
+form[style*="max-width: 500px"] .btn-primary:focus {
+  background: #328fd6;
+}
